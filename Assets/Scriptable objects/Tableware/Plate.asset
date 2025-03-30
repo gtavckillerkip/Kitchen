@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18315d2dcb5810e4c829403df5f5861a, type: 3}
+  m_Name: Plate
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: Plate
+  <ItemPrefab>k__BackingField: {fileID: 9144746602309591623, guid: 5cf8301899a6a7b419596ffb80561ef3, type: 3}
+  _recipeBook: {fileID: 11400000, guid: 73a23b1f18a222e4d836a49341b4a2f5, type: 2}
