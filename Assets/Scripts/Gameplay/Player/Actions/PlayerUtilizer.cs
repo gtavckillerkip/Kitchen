@@ -26,7 +26,7 @@ namespace Kitchen.Gameplay.Player
 
 		private void Utilize(UtilizeType utilizeType)
 		{
-			var ray = new Ray(_utilizeCastPoint.position, _utilizeCastPoint.rotation * _utilizeCastPoint.forward);
+			var ray = new Ray(_utilizeCastPoint.position, _utilizeCastPoint.localRotation * _utilizeCastPoint.forward);
 
 			if (Physics.Raycast(ray, out var hit, _maxCastDistance))
 			{
