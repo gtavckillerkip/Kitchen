@@ -72,11 +72,17 @@ namespace Kitchen.Gameplay.Player
 				_movementDirection.x = 0;
 			}
 
+			if (_directionsFromInput != (0, 0))
+			{
+				transform.rotation = Quaternion.RotateTowards(
+					transform.rotation,
+					Quaternion.LookRotation(new(_directionsFromInput.X, 0, _directionsFromInput.Z)),
+					_rotationSpeed * Time.deltaTime);
+			}
+
 			if (_movementDirection != Vector3.zero)
 			{
 				_rigidbody.linearVelocity = _movementDirection.normalized * _moveForce;
-
-				transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(_movementDirection), _rotationSpeed * Time.deltaTime);
 			}
 		}
 	}
