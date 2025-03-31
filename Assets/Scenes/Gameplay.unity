@@ -1377,6 +1377,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Grill
       objectReference: {fileID: 0}
+    - target: {fileID: 4654041319099196559, guid: b12e5d46b3a5c5243882fa2544535527, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4717153566886169458, guid: b12e5d46b3a5c5243882fa2544535527, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2
@@ -1415,6 +1419,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4717153566886169458, guid: b12e5d46b3a5c5243882fa2544535527, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5511083419333509289, guid: b12e5d46b3a5c5243882fa2544535527, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8573540681594119821, guid: b12e5d46b3a5c5243882fa2544535527, type: 3}
