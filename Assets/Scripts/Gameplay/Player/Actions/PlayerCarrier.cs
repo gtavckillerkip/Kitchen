@@ -1,6 +1,7 @@
 ﻿using Kitchen.ScriptableObjects.Common;
 using Kitchen.ScriptableObjects.Ingredients;
 using Kitchen.ScriptableObjects.Tableware;
+using System;
 using UnityEngine;
 
 namespace Kitchen.Gameplay.Player
@@ -8,6 +9,9 @@ namespace Kitchen.Gameplay.Player
 	public class PlayerCarrier : MonoBehaviour, ICarrier
 	{
 		private ItemSO _carriedItem;
+
+		public event Action<ItemSO> ItemTaken;
+		public event Action<ItemSO> ItemDropped;
 
 		public bool TryTake(ItemSO item)
 		{
@@ -17,6 +21,7 @@ namespace Kitchen.Gameplay.Player
 			{
 				_carriedItem = item;
 				result = true;
+				ItemTaken?.Invoke(_carriedItem);
 			}
 			else
 			{
@@ -32,6 +37,7 @@ namespace Kitchen.Gameplay.Player
 					if (result)
 					{
 						_carriedItem = item as PlateSO;
+						ItemTaken?.Invoke(_carriedItem);
 					}
 				}
 			}
@@ -44,6 +50,8 @@ namespace Kitchen.Gameplay.Player
 			var carriedItem = _carriedItem;
 
 			_carriedItem = null;
+
+			ItemDropped?.Invoke(carriedItem);
 
 			return carriedItem;
 		}

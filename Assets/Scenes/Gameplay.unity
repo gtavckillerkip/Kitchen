@@ -655,6 +655,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b6ef6c4688900b40abc2d19b7002d0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &449919196
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 449919197}
+  m_Layer: 0
+  m_Name: Carry point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &449919197
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 449919196}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.3, y: 1.1, z: 0.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 575129343}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &461898140
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -887,6 +918,7 @@ GameObject:
   - component: {fileID: 575129346}
   - component: {fileID: 575129347}
   - component: {fileID: 575129348}
+  - component: {fileID: 575129349}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -909,6 +941,7 @@ Transform:
   m_Children:
   - {fileID: 1538346621}
   - {fileID: 1035233519}
+  - {fileID: 449919197}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &575129344
@@ -1000,6 +1033,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7aaf436949c0e44f89a9d6e96b0a16c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &575129349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 575129342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98412bc7c874cb24ba71f3f68f793b33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _carryPoint: {fileID: 449919197}
 --- !u!1 &609613500
 GameObject:
   m_ObjectHideFlags: 0
