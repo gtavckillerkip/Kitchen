@@ -17,6 +17,13 @@ namespace Kitchen.Gameplay.Counters
 					break;
 
 				case PlateSO plate:
+					if (carrier.GetItemSO() == null)
+					{
+						carrier.TryTake(plate);
+						CarriedItem = null;
+						break;
+					}
+
 					var item = carrier.Drop() as IngredientSO;
 					if (plate.TryAddIngredient(item) == false)
 					{

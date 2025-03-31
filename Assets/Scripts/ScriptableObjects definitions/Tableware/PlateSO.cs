@@ -28,9 +28,16 @@ namespace Kitchen.ScriptableObjects.Tableware
 		{
 			bool result = false;
 
-			if (_recipeComplete == false && _ingredients.Contains(ingredient) == false)
+			if (_recipeComplete == false && _ingredients.Any(i => i.Name == ingredient.Name) == false)
 			{
-				var newPossibleRecipes = _possibleRecipes.Where(r => r.Ins.Contains(ingredient)) as List<DishRecipeSO>;
+				var newPossibleRecipes = new List<DishRecipeSO>();
+				_possibleRecipes.ForEach(r =>
+				{
+					if (r.Ins.Any(i => i.Name == ingredient.Name))
+					{
+						newPossibleRecipes.Add(r);
+					}
+				});
 
 				if (newPossibleRecipes.Count > 0)
 				{
