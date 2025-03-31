@@ -7,6 +7,7 @@ namespace Kitchen.Gameplay.Player
 	public class PlayerMovement : MonoBehaviour
 	{
 		[SerializeField] private float _moveForce = 10;
+		[SerializeField] private float _rotationSpeed = 100;
 
 		private Vector3 _inputVector;
 		private Rigidbody _rigidbody;
@@ -33,6 +34,8 @@ namespace Kitchen.Gameplay.Player
 			if (_inputVector != Vector3.zero)
 			{
 				_rigidbody.linearVelocity = _inputVector.normalized * _moveForce;
+
+				transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(_inputVector), _rotationSpeed * Time.deltaTime);
 			}
 		}
 	}
