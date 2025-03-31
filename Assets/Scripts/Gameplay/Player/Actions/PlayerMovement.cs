@@ -8,34 +8,75 @@ namespace Kitchen.Gameplay.Player
 	{
 		[SerializeField] private float _moveForce = 10;
 		[SerializeField] private float _rotationSpeed = 100;
+		[SerializeField] private Transform _collisionRaycastPoint;
 
-		private Vector3 _inputVector;
+		private Vector3 _movementDirection;
 		private Rigidbody _rigidbody;
 		private InputManager _inputManager;
+		private (int Z, int X) _directionsFromInput;
+		private float _collisionRaycastLength;
 
 		private void Start()
 		{
 			_rigidbody = GetComponent<Rigidbody>();
 			_inputManager = InputManager.Instance;
+			_directionsFromInput = (0, 0);
+			_collisionRaycastLength = 0.5f;
 
-			_inputManager.ForwardButtonDown += () => _inputVector += Vector3.forward;
-			_inputManager.BackwardButtonDown += () => _inputVector += Vector3.back;
-			_inputManager.LeftButtonDown += () => _inputVector += Vector3.left;
-			_inputManager.RightButtonDown += () => _inputVector += Vector3.right;
+			_inputManager.ForwardButtonDown += () => _directionsFromInput.Z++;
+			_inputManager.BackwardButtonDown += () => _directionsFromInput.Z--;
+			_inputManager.LeftButtonDown += () => _directionsFromInput.X--;
+			_inputManager.RightButtonDown += () => _directionsFromInput.X++;
 
-			_inputManager.ForwardButtonUp += () => _inputVector -= Vector3.forward;
-			_inputManager.BackwardButtonUp += () => _inputVector -= Vector3.back;
-			_inputManager.LeftButtonUp += () => _inputVector -= Vector3.left;
-			_inputManager.RightButtonUp += () => _inputVector -= Vector3.right;
+			_inputManager.ForwardButtonUp += () => _directionsFromInput.Z--;
+			_inputManager.BackwardButtonUp += () => _directionsFromInput.Z++;
+			_inputManager.LeftButtonUp += () => _directionsFromInput.X++;
+			_inputManager.RightButtonUp += () => _directionsFromInput.X--;
 		}
 
 		private void Update()
 		{
-			if (_inputVector != Vector3.zero)
+			if (_directionsFromInput.Z != 0)
 			{
-				_rigidbody.linearVelocity = _inputVector.normalized * _moveForce;
+				var zRay = new Ray(_collisionRaycastPoint.position, new Vector3(0, 0, _directionsFromInput.Z));
 
-				transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(_inputVector), _rotationSpeed * Time.deltaTime);
+				if (!Physics.Raycast(zRay, _collisionRaycastLength))
+				{
+					_movementDirection.z = _directionsFromInput.Z;
+				}
+				else
+				{
+					_movementDirection.z = 0;
+				}
+			}
+			else
+			{
+				_movementDirection.z = 0;
+			}
+
+			if (_directionsFromInput.X != 0)
+			{
+				var xRay = new Ray(_collisionRaycastPoint.position, new Vector3(_directionsFromInput.X, 0, 0));
+
+				if (!Physics.Raycast(xRay, _collisionRaycastLength))
+				{
+					_movementDirection.x = _directionsFromInput.X;
+				}
+				else
+				{
+					_movementDirection.x = 0;
+				}
+			}
+			else
+			{
+				_movementDirection.x = 0;
+			}
+
+			if (_movementDirection != Vector3.zero)
+			{
+				_rigidbody.linearVelocity = _movementDirection.normalized * _moveForce;
+
+				transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(_movementDirection), _rotationSpeed * Time.deltaTime);
 			}
 		}
 	}
