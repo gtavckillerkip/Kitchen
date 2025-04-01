@@ -1,5 +1,4 @@
-﻿using Kitchen.ScriptableObjects.Ingredients;
-using Kitchen.ScriptableObjects.Tableware;
+﻿using Kitchen.Gameplay.Items;
 using UnityEngine;
 
 namespace Kitchen.Gameplay.Counters
@@ -10,36 +9,33 @@ namespace Kitchen.Gameplay.Counters
 		{
 			ICarrier carrier = utilizer.GetComponent<ICarrier>();
 
-			if (CarriedItem == null)
+			switch (CarriedItem)
 			{
-				CarriedItem = carrier.Drop();
-			}
-			else
-			{
-				switch (CarriedItem.ItemSO)
-				{
-					case PlateSO plate:
-						if (carrier.GetItemSO() == null)
-						{
-							carrier.TryTake(CarriedItem);
-							CarriedItem = null;
-							break;
-						}
+				case null:
+					CarriedItem = carrier.Drop();
+					break;
 
-						var itemSO = carrier.GetItemSO();
-						if (plate.TryAddIngredient(itemSO as IngredientSO) == false)
-						{
-							carrier.Drop();
-						}
+				case Plate plate:
+					if (carrier.GetItem() == null)
+					{
+						carrier.TryTake(CarriedItem);
+						CarriedItem = null;
 						break;
+					}
 
-					case IngredientSO:
-						if (carrier.TryTake(CarriedItem))
-						{
-							CarriedItem = null;
-						}
-						break;
-				}	
+					var item = carrier.GetItem();
+					if (plate.TryAddIngredient(item))
+					{
+						carrier.Drop();
+					}
+					break;
+
+				case not Plate:
+					if (carrier.TryTake(CarriedItem))
+					{
+						CarriedItem = null;
+					}
+					break;
 			}
 		}
 	}

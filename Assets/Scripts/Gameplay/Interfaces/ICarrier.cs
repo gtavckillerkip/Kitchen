@@ -1,5 +1,4 @@
 ﻿using Kitchen.Gameplay.Items;
-using Kitchen.ScriptableObjects.Common;
 using System;
 
 namespace Kitchen.Gameplay
@@ -12,6 +11,6 @@ namespace Kitchen.Gameplay
 
 		Item Drop();
 
-		ItemSO GetItemSO();
+		Item GetItem();
 	}
 }

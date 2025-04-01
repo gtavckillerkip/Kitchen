@@ -1,7 +1,4 @@
 ﻿using Kitchen.Gameplay.Items;
-using Kitchen.ScriptableObjects.Common;
-using Kitchen.ScriptableObjects.Ingredients;
-using Kitchen.ScriptableObjects.Tableware;
 using System;
 using UnityEngine;
 
@@ -25,14 +22,14 @@ namespace Kitchen.Gameplay.Player
 			}
 			else
 			{
-				if (_carriedItem.ItemSO is PlateSO)
+				if (_carriedItem is Plate)
 				{
-					result = (_carriedItem.ItemSO as PlateSO).TryAddIngredient(item.ItemSO as IngredientSO);
+					result = (_carriedItem as Plate).TryAddIngredient(item);
 				}
 
-				if (_carriedItem.ItemSO is IngredientSO && item.ItemSO is PlateSO)
+				if (_carriedItem is not Plate && item is Plate)
 				{
-					result = (item.ItemSO as PlateSO).TryAddIngredient(_carriedItem.ItemSO as IngredientSO);
+					result = (item as Plate).TryAddIngredient(_carriedItem);
 
 					if (result)
 					{
@@ -56,6 +53,6 @@ namespace Kitchen.Gameplay.Player
 			return carriedItem;
 		}
 
-		public ItemSO GetItemSO() => _carriedItem.ItemSO;
+		public Item GetItem() => _carriedItem;
 	}
 }

@@ -1,4 +1,4 @@
-﻿using Kitchen.ScriptableObjects.Tableware;
+﻿using Kitchen.Gameplay.Items;
 using UnityEngine;
 
 namespace Kitchen.Gameplay.Counters
@@ -10,14 +10,13 @@ namespace Kitchen.Gameplay.Counters
 			ICarrier carrier = utilizer.GetComponent<ICarrier>();
 			
 			var drop = carrier.Drop();
-
-			if (drop.ItemSO is PlateSO plate && plate.IsEmpty == false)
+			if (drop is Plate plate && plate.IsEmpty == false)
 			{
 				plate.Clear();
 			}
 			else
 			{
-				Destroy(drop);
+				Destroy(drop.gameObject);
 			}
 		}
 	}

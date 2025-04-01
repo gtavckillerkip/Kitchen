@@ -118,16 +118,57 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plate
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1771491585823468798, guid: 0bc1bc9733b833d4fa724c57aa24f18b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 5712491538447592912, guid: 0bc1bc9733b833d4fa724c57aa24f18b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 754418715437163440}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7404084608860228031, guid: 0bc1bc9733b833d4fa724c57aa24f18b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3876208469101353464}
+    - targetCorrespondingSourceObject: {fileID: 7404084608860228031, guid: 0bc1bc9733b833d4fa724c57aa24f18b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -3874051683950408084}
   m_SourcePrefab: {fileID: 100100000, guid: 0bc1bc9733b833d4fa724c57aa24f18b, type: 3}
 --- !u!4 &6300225702897993256 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5712491538447592912, guid: 0bc1bc9733b833d4fa724c57aa24f18b, type: 3}
   m_PrefabInstance: {fileID: 1740708516535118840}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &9144746602309591623 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7404084608860228031, guid: 0bc1bc9733b833d4fa724c57aa24f18b, type: 3}
+  m_PrefabInstance: {fileID: 1740708516535118840}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3876208469101353464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9144746602309591623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48189e73452a2fd4290426dbdf69ce35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <ItemSO>k__BackingField: {fileID: 11400000, guid: 69e0c25eeb5f13743843ccc8789b02ef, type: 2}
+--- !u!114 &-3874051683950408084
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9144746602309591623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76cd8cba09b653d4b95faa6af6e5b48d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bunPlacement: {fileID: 0}
+  _meatPlacement: {fileID: 0}
+  _tomatoPlacement: {fileID: 0}
+  _cheesePlacement: {fileID: 0}

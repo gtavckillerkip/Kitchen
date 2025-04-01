@@ -19,7 +19,8 @@ namespace Kitchen.Gameplay.Counters
 
 			if (CarriedItem == null)
 			{
-				if (_conversionRecipeUser.RecipePresent(carrier.GetItemSO()))
+				var carrierItem = carrier.GetItem();
+				if (carrierItem != null && _conversionRecipeUser.RecipePresent(carrierItem.ItemSO))
 				{
 					CarriedItem = carrier.Drop();
 				}
@@ -39,7 +40,7 @@ namespace Kitchen.Gameplay.Counters
 			{
 				var @out = _conversionRecipeUser.UseRecipe(CarriedItem.ItemSO);
 
-				Destroy(CarriedItem);
+				Destroy(CarriedItem.gameObject);
 				CarriedItem = Instantiate(@out.ItemPrefab).GetComponent<Item>();
 			}
 		}
