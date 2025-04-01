@@ -18,3 +18,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d87bda59bb2edaf41a6b8815808247e3, type: 2}
   - {fileID: 11400000, guid: 748ea5fede79d434b8e7fb39218fba3b, type: 2}
   <Out>k__BackingField: {fileID: 11400000, guid: 52c0b4f7ed7bb4e4f811b4ecf820175e, type: 2}
+  <IngredientsPositioner>k__BackingField: {fileID: 11400000, guid: 3a7bd5b6dd9409d49af867c5d952576d, type: 2}

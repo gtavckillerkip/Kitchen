@@ -12,7 +12,10 @@ namespace Kitchen.Gameplay.Counters
 		{
 			ICarrier carrier = utilizer.GetComponent<ICarrier>();
 
-			carrier.TryTake(Instantiate(_plate.ItemPrefab).GetComponent<Item>());
+			if (carrier.GetItem() == null)
+			{
+				carrier.TryTake(Instantiate(_plate.ItemPrefab).GetComponent<Item>());
+			}
 		}
 	}
 }

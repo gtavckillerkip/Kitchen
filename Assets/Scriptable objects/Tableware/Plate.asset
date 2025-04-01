@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Plate
   <ItemPrefab>k__BackingField: {fileID: 9144746602309591623, guid: 5cf8301899a6a7b419596ffb80561ef3, type: 3}
-  _recipeBook: {fileID: 11400000, guid: 73a23b1f18a222e4d836a49341b4a2f5, type: 2}
+  <RecipeBook>k__BackingField: {fileID: 11400000, guid: 73a23b1f18a222e4d836a49341b4a2f5, type: 2}

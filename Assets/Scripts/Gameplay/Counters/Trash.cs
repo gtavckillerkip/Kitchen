@@ -9,14 +9,14 @@ namespace Kitchen.Gameplay.Counters
 		{
 			ICarrier carrier = utilizer.GetComponent<ICarrier>();
 			
-			var drop = carrier.Drop();
-			if (drop is Plate plate && plate.IsEmpty == false)
+			var item = carrier.GetItem();
+			if (item is Plate plate && plate.IsEmpty == false)
 			{
 				plate.Clear();
 			}
-			else
+			else if (item != null)
 			{
-				Destroy(drop.gameObject);
+				Destroy(item.gameObject);
 			}
 		}
 	}

@@ -1,5 +1,6 @@
 ﻿using Kitchen.ScriptableObjects.Recipes;
 using Kitchen.ScriptableObjects.Tableware;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,7 +10,9 @@ namespace Kitchen.Gameplay.Items
 	{
 		private readonly List<Item> _ingredients = new();
 		private List<DishRecipeSO> _possibleRecipes = new();
-		private bool _recipeComplete = false;
+
+		public event Action<Item> IngredientAdded;
+		public event Action Cleared;
 
 		private void Start()
 		{
@@ -23,7 +26,7 @@ namespace Kitchen.Gameplay.Items
 		{
 			bool result = false;
 
-			if (_recipeComplete == false && _ingredients.Any(i => i.ItemSO.Name == ingredient.ItemSO.Name) == false)
+			if (_ingredients.Any(i => i.ItemSO == ingredient.ItemSO) == false)
 			{
 				var newPossibleRecipes = new List<DishRecipeSO>();
 				_possibleRecipes.ForEach(r =>
@@ -38,12 +41,10 @@ namespace Kitchen.Gameplay.Items
 				{
 					_ingredients.Add(ingredient);
 					result = true;
+
 					_possibleRecipes = newPossibleRecipes;
 
-					if (_possibleRecipes.Count == 1)
-					{
-						_recipeComplete = true;
-					}
+					IngredientAdded?.Invoke(ingredient);
 				}
 			}
 
@@ -59,9 +60,14 @@ namespace Kitchen.Gameplay.Items
 
 			_ingredients.Clear();
 			_possibleRecipes.Clear();
-			_recipeComplete = false;
+
+			Cleared?.Invoke();
 		}
 
 		public bool IsEmpty => _ingredients.Count == 0;
+
+		public IEnumerable<DishRecipeSO> PossibleRecipes => _possibleRecipes;
+
+		public IEnumerable<Item> Ingredients => _ingredients;
 	}
 }

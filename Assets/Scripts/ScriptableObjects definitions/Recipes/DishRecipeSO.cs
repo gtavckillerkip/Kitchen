@@ -8,5 +8,6 @@ namespace Kitchen.ScriptableObjects.Recipes
 	{
 		[field: SerializeField] public IngredientSO[] Ins { get; private set; }
 		[field: SerializeField] public DishSO Out { get; private set; }
+		[field: SerializeField] public DishIngredientsPositioner IngredientsPositioner { get; private set; }
 	}
 }
