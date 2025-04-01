@@ -1,4 +1,4 @@
-﻿using Kitchen.ScriptableObjects.Common;
+﻿using Kitchen.Gameplay.Items;
 using UnityEngine;
 
 namespace Kitchen.Gameplay.Player
@@ -14,23 +14,15 @@ namespace Kitchen.Gameplay.Player
 		{
 			_playerCarrier = GetComponent<PlayerCarrier>();
 
-			_playerCarrier.ItemTaken += HandleItemTaken;
-			_playerCarrier.ItemDropped += HandleItemDropped;
+			_playerCarrier.ItemChanged += HandleItemChanged;
 		}
 
-		private void HandleItemTaken(ItemSO item)
+		private void HandleItemChanged(Item item)
 		{
-			if (item != null && item.ItemPrefab != null)
+			if (item != null)
 			{
-				Instantiate(item.ItemPrefab, _carryPoint);
-			}
-		}
-
-		private void HandleItemDropped(ItemSO item)
-		{
-			if (_carryPoint.childCount > 0)
-			{
-				Destroy(_carryPoint.GetChild(0).gameObject);
+				item.transform.SetParent(_carryPoint);
+				item.transform.localPosition = Vector3.zero;
 			}
 		}
 	}

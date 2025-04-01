@@ -1,4 +1,5 @@
-﻿using Kitchen.ScriptableObjects.Common;
+﻿using Kitchen.Gameplay.Items;
+using Kitchen.ScriptableObjects.Common;
 using Kitchen.ScriptableObjects.Ingredients;
 using Kitchen.ScriptableObjects.Tableware;
 using System;
@@ -8,12 +9,11 @@ namespace Kitchen.Gameplay.Player
 {
 	public class PlayerCarrier : MonoBehaviour, ICarrier
 	{
-		private ItemSO _carriedItem;
+		private Item _carriedItem;
 
-		public event Action<ItemSO> ItemTaken;
-		public event Action<ItemSO> ItemDropped;
+		public event Action<Item> ItemChanged;
 
-		public bool TryTake(ItemSO item)
+		public bool TryTake(Item item)
 		{
 			bool result = false;
 
@@ -21,23 +21,23 @@ namespace Kitchen.Gameplay.Player
 			{
 				_carriedItem = item;
 				result = true;
-				ItemTaken?.Invoke(_carriedItem);
+				ItemChanged?.Invoke(_carriedItem);
 			}
 			else
 			{
-				if (_carriedItem is PlateSO)
+				if (_carriedItem.ItemSO is PlateSO)
 				{
-					result = (_carriedItem as PlateSO).TryAddIngredient(item as IngredientSO);
+					result = (_carriedItem.ItemSO as PlateSO).TryAddIngredient(item.ItemSO as IngredientSO);
 				}
 
-				if (_carriedItem is IngredientSO && item is PlateSO)
+				if (_carriedItem.ItemSO is IngredientSO && item.ItemSO is PlateSO)
 				{
-					result = (item as PlateSO).TryAddIngredient(_carriedItem as IngredientSO);
+					result = (item.ItemSO as PlateSO).TryAddIngredient(_carriedItem.ItemSO as IngredientSO);
 
 					if (result)
 					{
-						_carriedItem = item as PlateSO;
-						ItemTaken?.Invoke(_carriedItem);
+						_carriedItem = item;
+						ItemChanged?.Invoke(_carriedItem);
 					}
 				}
 			}
@@ -45,17 +45,17 @@ namespace Kitchen.Gameplay.Player
 			return result;
 		}
 
-		public ItemSO Drop()
+		public Item Drop()
 		{
 			var carriedItem = _carriedItem;
 
 			_carriedItem = null;
 
-			ItemDropped?.Invoke(carriedItem);
+			ItemChanged?.Invoke(_carriedItem);
 
 			return carriedItem;
 		}
 
-		public ItemSO GetItemSO() => _carriedItem;
+		public ItemSO GetItemSO() => _carriedItem.ItemSO;
 	}
 }

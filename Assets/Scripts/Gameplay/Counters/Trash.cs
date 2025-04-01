@@ -11,7 +11,7 @@ namespace Kitchen.Gameplay.Counters
 			
 			var drop = carrier.Drop();
 
-			if (drop is PlateSO plate && plate.IsEmpty == false)
+			if (drop.ItemSO is PlateSO plate && plate.IsEmpty == false)
 			{
 				plate.Clear();
 			}

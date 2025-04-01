@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Kitchen.Gameplay.Items;
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -81,12 +82,12 @@ namespace Kitchen.Gameplay.Counters
 				yield return null;
 			}
 
-			var @out = _conversionRecipeUser.UseRecipe(CarriedItem);
+			var @out = _conversionRecipeUser.UseRecipe(CarriedItem.ItemSO);
 
 			if (@out != null)
 			{
 				Destroy(CarriedItem);
-				CarriedItem = @out;
+				CarriedItem = Instantiate(@out.ItemPrefab).GetComponent<Item>();
 			}
 
 			if (_conversionRecipeUser.RecipePresent(@out))

@@ -13,10 +13,11 @@ namespace Kitchen.Gameplay.Counters
 
 			if (item is PlateSO plate && plate.IsEmpty == false)
 			{
-				plate = carrier.Drop() as PlateSO;
+				carrier.Drop();
 
 				plate.Clear();
 				Destroy(plate);
+				Destroy(item);
 			}
 		}
 	}

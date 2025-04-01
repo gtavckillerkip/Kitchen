@@ -1,17 +1,16 @@
-﻿using Kitchen.ScriptableObjects.Common;
+﻿using Kitchen.Gameplay.Items;
+using Kitchen.ScriptableObjects.Common;
 using System;
 
 namespace Kitchen.Gameplay
 {
 	public interface ICarrier
 	{
-		event Action<ItemSO> ItemTaken;
+		event Action<Item> ItemChanged;
 
-		event Action<ItemSO> ItemDropped;
+		bool TryTake(Item carrible);
 
-		bool TryTake(ItemSO carrible);
-
-		ItemSO Drop();
+		Item Drop();
 
 		ItemSO GetItemSO();
 	}

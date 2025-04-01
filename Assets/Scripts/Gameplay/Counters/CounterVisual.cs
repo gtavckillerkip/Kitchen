@@ -1,4 +1,4 @@
-﻿using Kitchen.ScriptableObjects.Common;
+﻿using Kitchen.Gameplay.Items;
 using UnityEngine;
 
 namespace Kitchen.Gameplay.Counters
@@ -16,16 +16,12 @@ namespace Kitchen.Gameplay.Counters
 			_counter.ItemChanged += HandleItemChanged;
 		}
 
-		private void HandleItemChanged(ItemSO newItem)
+		private void HandleItemChanged(Item newItem)
 		{
-			if (_itemPlacement.childCount > 0)
+			if (newItem != null)
 			{
-				Destroy(_itemPlacement.GetChild(0).gameObject);
-			}
-
-			if (newItem != null && newItem.ItemPrefab != null)
-			{
-				Instantiate(newItem.ItemPrefab, _itemPlacement);
+				newItem.transform.SetParent(_itemPlacement);
+				newItem.transform.localPosition = Vector3.zero;
 			}
 		}
 	}

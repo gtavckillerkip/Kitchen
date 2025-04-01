@@ -10,33 +10,36 @@ namespace Kitchen.Gameplay.Counters
 		{
 			ICarrier carrier = utilizer.GetComponent<ICarrier>();
 
-			switch (CarriedItem)
+			if (CarriedItem == null)
 			{
-				case null:
-					CarriedItem = carrier.Drop();
-					break;
+				CarriedItem = carrier.Drop();
+			}
+			else
+			{
+				switch (CarriedItem.ItemSO)
+				{
+					case PlateSO plate:
+						if (carrier.GetItemSO() == null)
+						{
+							carrier.TryTake(CarriedItem);
+							CarriedItem = null;
+							break;
+						}
 
-				case PlateSO plate:
-					if (carrier.GetItemSO() == null)
-					{
-						carrier.TryTake(plate);
-						CarriedItem = null;
+						var itemSO = carrier.GetItemSO();
+						if (plate.TryAddIngredient(itemSO as IngredientSO) == false)
+						{
+							carrier.Drop();
+						}
 						break;
-					}
 
-					var item = carrier.Drop() as IngredientSO;
-					if (plate.TryAddIngredient(item) == false)
-					{
-						carrier.TryTake(item);
-					}
-					break;
-
-				case IngredientSO ingredient:
-					if (carrier.TryTake(ingredient))
-					{
-						CarriedItem = null;
-					}
-					break;
+					case IngredientSO:
+						if (carrier.TryTake(CarriedItem))
+						{
+							CarriedItem = null;
+						}
+						break;
+				}	
 			}
 		}
 	}

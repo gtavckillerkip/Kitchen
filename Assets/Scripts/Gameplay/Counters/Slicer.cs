@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Kitchen.Gameplay.Items;
+using UnityEngine;
 
 namespace Kitchen.Gameplay.Counters
 {
@@ -36,10 +37,10 @@ namespace Kitchen.Gameplay.Counters
 		{
 			if (CarriedItem != null)
 			{
-				var @out = _conversionRecipeUser.UseRecipe(CarriedItem);
+				var @out = _conversionRecipeUser.UseRecipe(CarriedItem.ItemSO);
 
 				Destroy(CarriedItem);
-				CarriedItem = @out;
+				CarriedItem = Instantiate(@out.ItemPrefab).GetComponent<Item>();
 			}
 		}
 	}

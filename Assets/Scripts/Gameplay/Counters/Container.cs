@@ -1,4 +1,5 @@
-﻿using Kitchen.ScriptableObjects.Ingredients;
+﻿using Kitchen.Gameplay.Items;
+using Kitchen.ScriptableObjects.Ingredients;
 using UnityEngine;
 
 namespace Kitchen.Gameplay.Counters
@@ -7,16 +8,11 @@ namespace Kitchen.Gameplay.Counters
 	{
 		[SerializeField] private IngredientSO _takeableIngredient;
 
-		private void Start()
-		{
-			CarriedItem = Instantiate(_takeableIngredient);
-		}
-
 		public override void Utilize(GameObject utilizer)
 		{
 			ICarrier carrier = utilizer.GetComponent<ICarrier>();
 
-			carrier.TryTake(Instantiate(_takeableIngredient));
+			carrier.TryTake(Instantiate(_takeableIngredient.ItemPrefab).GetComponent<Item>());
 		}
 	}
 }

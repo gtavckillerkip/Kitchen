@@ -1,4 +1,4 @@
-﻿using Kitchen.ScriptableObjects.Common;
+﻿using Kitchen.Gameplay.Items;
 using System;
 using UnityEngine;
 
@@ -6,13 +6,13 @@ namespace Kitchen.Gameplay.Counters
 {
 	public abstract class Counter : MonoBehaviour, IUtilizable
 	{
-		private ItemSO _carriedItem;
+		private Item _carriedItem;
 
-		public event Action<ItemSO> ItemChanged;
+		public event Action<Item> ItemChanged;
 
 		public abstract void Utilize(GameObject utilizer);
 
-		protected ItemSO CarriedItem
+		protected Item CarriedItem
 		{
 			get => _carriedItem;
 			set
