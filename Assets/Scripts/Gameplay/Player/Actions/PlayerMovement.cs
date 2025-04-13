@@ -36,36 +36,20 @@ namespace Kitchen.Gameplay.Player
 
 		private void Update()
 		{
-			if (_directionsFromInput.Z != 0)
+			if (_directionsFromInput.Z != 0 &&
+				!Physics.Raycast(new Ray(_collisionRaycastPoint.position, new Vector3(0, 0, _directionsFromInput.Z)), _collisionRaycastLength))
 			{
-				var zRay = new Ray(_collisionRaycastPoint.position, new Vector3(0, 0, _directionsFromInput.Z));
-
-				if (!Physics.Raycast(zRay, _collisionRaycastLength))
-				{
-					_movementDirection.z = _directionsFromInput.Z;
-				}
-				else
-				{
-					_movementDirection.z = 0;
-				}
+				_movementDirection.z = _directionsFromInput.Z;
 			}
 			else
 			{
 				_movementDirection.z = 0;
 			}
 
-			if (_directionsFromInput.X != 0)
+			if (_directionsFromInput.X != 0 &&
+				!Physics.Raycast(new Ray(_collisionRaycastPoint.position, new Vector3(_directionsFromInput.X, 0, 0)), _collisionRaycastLength))
 			{
-				var xRay = new Ray(_collisionRaycastPoint.position, new Vector3(_directionsFromInput.X, 0, 0));
-
-				if (!Physics.Raycast(xRay, _collisionRaycastLength))
-				{
-					_movementDirection.x = _directionsFromInput.X;
-				}
-				else
-				{
-					_movementDirection.x = 0;
-				}
+				_movementDirection.x = _directionsFromInput.X;
 			}
 			else
 			{
