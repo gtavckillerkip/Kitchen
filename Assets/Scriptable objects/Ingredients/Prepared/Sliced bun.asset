@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Sliced bun
   <ItemPrefab>k__BackingField: {fileID: 9144746602309591623, guid: e4bdbd614d68d2b47935de40dc6ecb97, type: 3}
+  <Sprite>k__BackingField: {fileID: 21300000, guid: 9a2694cbc85c62744a9e2f0024bd79d8, type: 3}

@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Sliced tomato
   <ItemPrefab>k__BackingField: {fileID: 9144746602309591623, guid: ed69439009d143f428057241c67a34f1, type: 3}
+  <Sprite>k__BackingField: {fileID: 21300000, guid: 22b4e814e3a3b39489009a54848f1a63, type: 3}

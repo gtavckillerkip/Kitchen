@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Meat
   <ItemPrefab>k__BackingField: {fileID: 9144746602309591623, guid: acfbecc9f111f97478c01b1d7eebfeed, type: 3}
+  <Sprite>k__BackingField: {fileID: 21300000, guid: 47d51909c44a92f47b469f8eac2ba696, type: 3}

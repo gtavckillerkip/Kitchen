@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Sliced cheese
   <ItemPrefab>k__BackingField: {fileID: 9144746602309591623, guid: 6581ac98947dcef44be554535765dc63, type: 3}
+  <Sprite>k__BackingField: {fileID: 21300000, guid: 4049a03b3de43a04c8f784a1da4be074, type: 3}
