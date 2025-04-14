@@ -1,4 +1,5 @@
-﻿using Kitchen.Gameplay.Items;
+﻿using Kitchen.Basic.Managers;
+using Kitchen.Gameplay.Items;
 using UnityEngine;
 
 namespace Kitchen.Gameplay.Counters
@@ -11,10 +12,18 @@ namespace Kitchen.Gameplay.Counters
 
 			if (carrier.GetItem() is Plate plate && plate.IsEmpty == false)
 			{
-				carrier.Drop();
+				var (isDishComplete, dishRecipeSO) = plate.GetCompleteDishRecipeSO();
 
-				plate.Clear();
-				Destroy(plate.gameObject);
+				if (isDishComplete)
+				{
+					if (QuestsManager.Instance.TryPassQuest(dishRecipeSO))
+					{
+						carrier.Drop();
+
+						plate.Clear();
+						Destroy(plate.gameObject);
+					}
+				}
 			}
 		}
 	}

@@ -69,5 +69,12 @@ namespace Kitchen.Gameplay.Items
 		public IEnumerable<DishRecipeSO> PossibleRecipes => _possibleRecipes;
 
 		public IEnumerable<Item> Ingredients => _ingredients;
+
+		public (bool IsComplete, DishRecipeSO DishRecipeSO) GetCompleteDishRecipeSO()
+		{
+			var recipe = _possibleRecipes.FirstOrDefault(r => r.Ins.All(@in => _ingredients.Exists(i => i.ItemSO == @in)));
+
+			return (recipe != null, recipe);
+		}
 	}
 }
