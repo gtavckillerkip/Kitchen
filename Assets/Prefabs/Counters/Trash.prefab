@@ -86,9 +86,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Trash
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5466486066697889399, guid: 80f1cf056c7724d47a722b26eccd2bdf, type: 3}
     m_RemovedGameObjects:
     - {fileID: 4977467079513190639, guid: 80f1cf056c7724d47a722b26eccd2bdf, type: 3}
+    - {fileID: 863315157965082255, guid: 80f1cf056c7724d47a722b26eccd2bdf, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 4459395594325429628, guid: 80f1cf056c7724d47a722b26eccd2bdf, type: 3}
       insertIndex: -1
