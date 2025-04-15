@@ -13,6 +13,8 @@ namespace Kitchen.Gameplay.Counters
 
 		private Counter _counter;
 
+		private Plate _carriedPlate;
+
 		private void Start()
 		{
 			_counter = GetComponent<Counter>();
@@ -39,6 +41,9 @@ namespace Kitchen.Gameplay.Counters
 							_carryingItemImages[i].sprite = (plate.Ingredients.ElementAt(i).ItemSO as IngredientSO).Sprite;
 						}
 					}
+
+					_carriedPlate = plate;
+					_carriedPlate.IngredientAdded += HandleIngredientAddedOnPlate;
 				}
 				else
 				{
@@ -48,6 +53,12 @@ namespace Kitchen.Gameplay.Counters
 			}
 			else
 			{
+				if (_carriedPlate != null)
+				{
+					_carriedPlate.IngredientAdded -= HandleIngredientAddedOnPlate;
+					_carriedPlate = null;
+				}
+
 				DeactivateCarryingItemsImages();
 			}
 		}
@@ -58,6 +69,14 @@ namespace Kitchen.Gameplay.Counters
 			{
 				_carryingItemImages[i].gameObject.SetActive(false);
 			}
+		}
+
+		private void HandleIngredientAddedOnPlate(Item item)
+		{
+			int index = _carriedPlate.Ingredients.Count() - 1;
+
+			_carryingItemImages[index].gameObject.SetActive(true);
+			_carryingItemImages[index].sprite = (item.ItemSO as IngredientSO).Sprite;
 		}
 	}
 }
