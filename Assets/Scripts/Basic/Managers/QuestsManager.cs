@@ -30,7 +30,13 @@ namespace Kitchen.Basic.Managers
 
 			QuestRemoved += HandleQuestRemoved;
 
-			_questsAddingCoroutine = StartCoroutine(AddQuests());
+			enabled = false;
+
+			GameplayStartManager.Instance.GameplayStartDelayPassed += () =>
+			{
+				enabled = true;
+				_questsAddingCoroutine = StartCoroutine(AddQuests());
+			};
 		}
 
 		private IEnumerator AddQuests()
