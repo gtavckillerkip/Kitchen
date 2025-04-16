@@ -11,15 +11,12 @@ namespace Kitchen.UI
 		[SerializeField] private TextMeshProUGUI _rewardText;
 		[SerializeField] private Image[] _ingredientsImages = new Image[4];
 
-		public  Quest RefferedQuest { get; private set; }
-
-		private void OnEnable()
-		{
-			DeactivateIngredientsImages();
-		}
+		public Quest RefferedQuest { get; private set; }
 
 		public void Setup(Quest quest)
 		{
+			DeactivateIngredientsImages();
+
 			RefferedQuest = quest;
 
 			_titleText.text = quest.QuestSO.DishRecipeSO.Out.Name;
@@ -32,7 +29,7 @@ namespace Kitchen.UI
 			}
 		}
 
-		private void OnDisable()
+		public void Unsetup()
 		{
 			RefferedQuest = null;
 		}

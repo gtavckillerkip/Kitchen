@@ -30,11 +30,5 @@ namespace Kitchen.UI
 			Application.Quit();
 #endif
 		}
-
-		private void OnDestroy()
-		{
-			_playButton.onClick.RemoveAllListeners();
-			_quitButton.onClick.RemoveAllListeners();
-		}
 	}
 }
