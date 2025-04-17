@@ -10,15 +10,18 @@ namespace Kitchen.UI
 		private const string MAIN_MENU_SCENE_NAME = "MainMenu";
 
 		[SerializeField] private GameObject _pauseGameObject;
+		[SerializeField] private GameObject _instructionsGameObject;
 
 		[SerializeField] private Button _resumeButton;
 		[SerializeField] private Button _mainMenuButton;
+		[SerializeField] private Button _instructionsButton;
 		[SerializeField] private Button _quitButton;
 
 		private void Start()
 		{
 			_resumeButton.onClick.AddListener(HandleResumeButtonClicked);
 			_mainMenuButton.onClick.AddListener(HandleMainMenuButtonClicked);
+			_instructionsButton.onClick.AddListener(HandleInstructionsButtonClicked);
 			_quitButton.onClick.AddListener(HandleQuitButtonClicked);
 
 			PauseManager.Instance.GamePaused += HandleGamePaused;
@@ -33,6 +36,12 @@ namespace Kitchen.UI
 		private void HandleMainMenuButtonClicked()
 		{
 			SceneManager.LoadScene(MAIN_MENU_SCENE_NAME);
+		}
+
+		private void HandleInstructionsButtonClicked()
+		{
+			_pauseGameObject.SetActive(false);
+			_instructionsGameObject.SetActive(true);
 		}
 
 		private void HandleQuitButtonClicked()
@@ -51,6 +60,11 @@ namespace Kitchen.UI
 
 		private void HandleGameUnpaused()
 		{
+			if (_instructionsGameObject.activeSelf)
+			{
+				_instructionsGameObject.SetActive(false);
+			}
+
 			_pauseGameObject.SetActive(false);
 		}
 	}
